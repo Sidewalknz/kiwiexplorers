@@ -1,7 +1,6 @@
 .navbar {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0 auto auto 0; /* top:0; left:0; */
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -22,7 +21,6 @@
 /* Frosted after scroll */
 .scrolled {
   background: rgba(255, 255, 255, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -42,7 +40,7 @@
   letter-spacing: 1px;
 }
 
-/* Nav links */
+/* -------- Desktop nav links -------- */
 .navLinks {
   list-style: none;
   display: flex;
@@ -58,6 +56,7 @@
   transition: color 0.2s ease-in-out;
 }
 
+/* Underline animation */
 .navLink::after {
   content: "";
   position: absolute;
@@ -76,12 +75,9 @@
   transform: scaleX(1);
 }
 
-.activeLink {
-  color: #ffeb3b;
-}
-.activeLink::after {
-  transform: scaleX(1);
-}
+/* Active link styling (desktop) */
+.activeLink { color: #ffeb3b; }
+.activeLink::after { transform: scaleX(1); }
 
 /* Enrol button */
 .enrolButton {
@@ -99,4 +95,109 @@
 .enrolButton:focus {
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* -------- Burger button (mobile) -------- */
+.burger {
+  display: none;
+  position: relative;
+  width: 34px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1002; /* above drawer */
+}
+
+.line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform .3s ease, opacity .3s ease, top .3s ease;
+}
+
+.burger .line:nth-child(1) { top: 4px; }
+.burger .line:nth-child(2) { top: 12px; }
+.burger .line:nth-child(3) { top: 20px; }
+
+/* X animation when open */
+.burgerOpen .line:nth-child(1) { top: 12px; transform: rotate(45deg); }
+.burgerOpen .line:nth-child(2) { opacity: 0; }
+.burgerOpen .line:nth-child(3) { top: 12px; transform: rotate(-45deg); }
+
+/* -------- Mobile Drawer (always frosted) -------- */
+.mobileDrawer {
+  position: absolute;
+  top: 100%; /* right under the navbar */
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255); /* permanent frosted glass */
+  border-radius: 0 0 20px 20px; /* rounded bottom corners */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transform: translateY(-20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .3s ease, opacity .3s ease;
+  z-index: 1100; /* higher than navbar so it stays visible */
+}
+
+
+.mobileOpen {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobileList {
+  list-style: none;
+  padding: 1rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mobileLink {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  border-radius: 12px;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.mobileLink:hover,
+.mobileLink:focus {
+  background: rgba(255,255,255,0.6);
+  transform: translateY(-2px);
+}
+
+.mobileActive {
+  background: #fff7bf;
+  color: #333;
+}
+
+.mobileEnrol {
+  display: block;
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 0.75rem 1rem;
+  margin-top: 0.5rem;
+  border-radius: 999px;
+  background: #ffeb3b;
+  color: #333;
+  font-weight: 700;
+}
+
+/* --------- Responsive rules --------- */
+@media (max-width: 768px) {
+  .navLinks { display: none; }
+  .burger { display: inline-block; color: #fff; }
 }
