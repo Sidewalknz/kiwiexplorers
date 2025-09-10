@@ -146,7 +146,25 @@
 }
 
 /* ---------- Responsive ---------- */
-@media (max-width: 900px) {
+
+/* Tablets (2-column layout) */
+@media (max-width: 1200px) {
+  .groups { grid-template-columns: repeat(2, 1fr); }
+  .title { font-size: 4rem; }
+}
+
+/* Mobile (1-column layout) */
+@media (max-width: 768px) {
   .groups { grid-template-columns: 1fr; }
-  .title  { font-size: 3.2rem; }
+  .title  { font-size: 3rem; }
+  .cardTitle { font-size: 1.25rem; }
+  .cardText { font-size: 0.95rem; }
+  .ageBadge { font-size: 0.85rem; padding: 0.3rem 0.6rem; }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .title { font-size: 2.3rem; }
+  .cardTitle { font-size: 1.1rem; }
+  .cardText { font-size: 0.9rem; }
 }

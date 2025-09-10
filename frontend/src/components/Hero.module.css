@@ -90,23 +90,34 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* ---------- Clouds ---------- */
-.cloud {
+/* ---------- Clouds (movement on wrapper, pop on img) ---------- */
+.cloudWrap {
   position: absolute;
   left: -250px;
-  opacity: 0.9;
   animation-name: moveCloud;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  height: auto;
   z-index: 1;
 }
-@keyframes moveCloud {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(130vw); }
+
+/* Cloud image starts hidden, pops in when .mounted on root */
+.cloud {
+  height: auto;
+  opacity: 0;
+  transform: translateY(10px) scale(0.9) rotate(0.5deg);
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.12));
+  transition:
+    opacity 480ms ease-out,
+    transform 520ms cubic-bezier(.18,.89,.32,1.28);
 }
 
-/* ---------- Vehicles ---------- */
+/* when the section has mounted, reveal & pop */
+.mounted .cloud {
+  opacity: 0.95;
+  transform: translateY(0) scale(1) rotate(0deg);
+}
+
+/* ---------- Vehicles (movement on wrapper, pop on img) ---------- */
 .vehicleWrap {
   position: absolute;
   z-index: 1;
@@ -136,15 +147,32 @@
   100% { transform: translateX(-140vw); }
 }
 
-/* Vehicle image; flip when coming from right */
+/* Vehicle image pop-in */
 .vehicleImg {
   display: block;
   height: auto;
   filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+  opacity: 0;
+  transform: translateY(10px) scale(0.9);
+  transition:
+    opacity 480ms ease-out,
+    transform 520ms cubic-bezier(.18,.89,.32,1.28);
 }
+.mounted .vehicleImg {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* flip when coming from right */
 .flipX { transform: scaleX(-1); }
+.mounted .flipX { transform: translateY(0) scaleX(-1) scale(1); }
 
 /* ---------- Keyframes ---------- */
+@keyframes moveCloud {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(130vw); }
+}
+
 @keyframes fadeUp {
   0%   { opacity: 0; transform: translateY(18px) scale(0.98); }
   60%  { opacity: 1; transform: translateY(0)   scale(1.01); }
@@ -164,5 +192,17 @@
     opacity: 1;
     transform: none;
   }
-  .cloud, .vehicleWrap { animation: none !important; }
+
+  .cloudWrap,
+  .vehicleWrap {
+    animation: none !important; /* stop drifting */
+  }
+
+  .cloud,
+  .vehicleImg,
+  .flipX {
+    opacity: 1;
+    transform: none !important;
+    transition: none !important;
+  }
 }
