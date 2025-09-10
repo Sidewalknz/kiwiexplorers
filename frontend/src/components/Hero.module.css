@@ -1,0 +1,168 @@
+.hero {
+  height: 100vh;
+  background: linear-gradient(to bottom, #87ceeb, #b0e0e6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-atma), sans-serif;
+}
+
+.content {
+  z-index: 2;
+  max-width: 700px;
+  padding: 1rem;
+}
+
+/* ---------- Animated text ---------- */
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+
+  opacity: 0;
+  transform: translateY(18px) scale(0.98);
+  animation: fadeUp 700ms cubic-bezier(.2,.8,.2,1) 80ms forwards;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+
+  opacity: 0;
+  transform: translateY(16px) scale(0.98);
+  animation: fadeUp 700ms cubic-bezier(.2,.8,.2,1) 220ms forwards;
+}
+
+/* ---------- Buttons ---------- */
+.buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: nowrap;       /* keep side-by-side on mobile */
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.discoverBtn,
+.enrolBtn {
+  flex: 1;                 /* equal width */
+  min-width: 140px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+
+  /* fun pop-in */
+  opacity: 0;
+  transform: translateY(12px) scale(0.92);
+  animation: popIn 600ms cubic-bezier(.18,.89,.32,1.28) forwards;
+}
+
+/* Stagger the buttons */
+.discoverBtn { 
+  animation-delay: 380ms; 
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.discoverBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.enrolBtn { 
+  animation-delay: 520ms; 
+  background: #FFEB3B; 
+  color: #333; 
+}
+.enrolBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ---------- Clouds ---------- */
+.cloud {
+  position: absolute;
+  left: -250px;
+  opacity: 0.9;
+  animation-name: moveCloud;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  height: auto;
+  z-index: 1;
+}
+@keyframes moveCloud {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(130vw); }
+}
+
+/* ---------- Vehicles ---------- */
+.vehicleWrap {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  will-change: transform;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* Travel left -> right */
+.fromLeft {
+  left: -20vw;
+  animation-name: flyRight;
+}
+@keyframes flyRight {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(140vw); }
+}
+
+/* Travel right -> left */
+.fromRight {
+  right: -20vw;
+  animation-name: flyLeft;
+}
+@keyframes flyLeft {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-140vw); }
+}
+
+/* Vehicle image; flip when coming from right */
+.vehicleImg {
+  display: block;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+}
+.flipX { transform: scaleX(-1); }
+
+/* ---------- Keyframes ---------- */
+@keyframes fadeUp {
+  0%   { opacity: 0; transform: translateY(18px) scale(0.98); }
+  60%  { opacity: 1; transform: translateY(0)   scale(1.01); }
+  100% { opacity: 1; transform: translateY(0)   scale(1); }
+}
+
+@keyframes popIn {
+  0%   { opacity: 0; transform: translateY(12px) scale(0.92); }
+  70%  { opacity: 1; transform: translateY(-2px) scale(1.04); }
+  100% { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .title, .subtitle, .discoverBtn, .enrolBtn {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+  .cloud, .vehicleWrap { animation: none !important; }
+}

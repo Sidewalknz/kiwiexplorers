@@ -1,0 +1,50 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.navLinks li a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #fff;
+  transition: color 0.2s ease-in-out;
+}
+
+.navLinks li a:hover {
+  color: #ffcc00;
+}
+
+/* Enrol button */
+.enrolButton {
+  background: #FFEB3B;
+  /*brightyellow*/color: #333;
+  padding: 0.5rem 1rem;
+  border-radius:999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.enrolButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}

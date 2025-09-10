@@ -1,0 +1,151 @@
+.section {
+  position: relative;
+  min-height: 100vh;
+  background: #f0f8ff; /* light sky blue background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 7rem 2rem 4rem; /* extra top padding to clear the cloud divider */
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Cloudy top divider */
+.cloudTop {
+  position: absolute;
+  top: -1px; /* avoid seams */
+  left: 0;
+  width: 100%;
+  height: auto;
+  line-height: 0;
+  z-index: 0;
+}
+
+.cloudSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Content sits above the cloud svg */
+.title,
+.groups {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Animated Title ---------- */
+.title {
+  font-family: var(--font-modak), cursive;
+  font-size: 5rem;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  line-height: 1.1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.letters { display: inline-block; }
+.letter {
+  display: inline-block;
+  animation: letterBob 2200ms ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+.space { display: inline-block; width: 0.6ch; }
+
+@keyframes letterBob {
+  0%   { transform: translateY(0) rotate(0deg); }
+  20%  { transform: translateY(-6px) rotate(-2deg); }
+  40%  { transform: translateY(0) rotate(0.6deg); }
+  60%  { transform: translateY(-3px) rotate(1.2deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .letter { animation: none !important; transform: none !important; }
+}
+
+/* ---------- Groups Layout ---------- */
+.groups {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  text-align: left; /* better for paragraphs under images */
+}
+
+/* Card */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* round image corners too */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Media (image + age badge) */
+.media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;               /* consistent crop */
+  background: #e6f3ff;
+}
+
+.cardImage {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.ageBadge {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: #FFEB3B;
+  color: #333;
+  font-weight: 800;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+/* Headings and text */
+.cardHeader {
+  padding: 1rem 1.25rem 0.25rem;
+}
+
+.cardTitle {
+  margin: 0 0 0.25rem;
+  font-size: 1.4rem;
+  color: #0070f3;
+  line-height: 1.2;
+}
+
+.cardMaori {
+  margin: 0 0 0.5rem;
+  color: #3b3b3b;
+  font-weight: 700;
+  font-family: var(--font-atma), sans-serif;
+}
+
+.cardText {
+  padding: 0 1.25rem 1.25rem;
+  color: #555;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .groups { grid-template-columns: 1fr; }
+  .title  { font-size: 3.2rem; }
+}
