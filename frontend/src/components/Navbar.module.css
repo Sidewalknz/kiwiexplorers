@@ -8,13 +8,41 @@
   align-items: center;
   padding: 1rem 2rem;
   z-index: 1000;
+  transition: background 0.3s ease, border-bottom 0.3s ease, backdrop-filter 0.3s ease;
 }
 
+/* Transparent at top */
+.top {
+  background: transparent;
+  border-bottom: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Frosted after scroll */
+.scrolled {
+  background: rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Logo / Title */
 .logo {
   display: flex;
   align-items: center;
 }
 
+.siteTitle {
+  font-family: var(--font-atma), sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+/* Nav links */
 .navLinks {
   list-style: none;
   display: flex;
@@ -22,29 +50,53 @@
   align-items: center;
 }
 
-.navLinks li a {
+.navLink {
+  position: relative;
   text-decoration: none;
   font-weight: 500;
   color: #fff;
   transition: color 0.2s ease-in-out;
 }
 
-.navLinks li a:hover {
-  color: #ffcc00;
+.navLink::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #ffeb3b;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.navLink:hover::after,
+.navLink:focus::after {
+  transform: scaleX(1);
+}
+
+.activeLink {
+  color: #ffeb3b;
+}
+.activeLink::after {
+  transform: scaleX(1);
 }
 
 /* Enrol button */
 .enrolButton {
-  background: #FFEB3B;
-  /*brightyellow*/color: #333;
-  padding: 0.5rem 1rem;
-  border-radius:999px;
-  font-weight: 600;
+  background: #ffeb3b;
+  color: #333;
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 700;
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-family: var(--font-atma), sans-serif;
 }
 
-.enrolButton:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+.enrolButton:hover,
+.enrolButton:focus {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
