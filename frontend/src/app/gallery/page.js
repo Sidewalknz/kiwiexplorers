@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import styles from "./Gallery.module.css";
+import MeetTheTeamCTA from "@/components/MeetTheTeamCTA";
 
 const GROUPS = {
   l: "Little Explorers",
@@ -160,7 +161,7 @@ export default function GalleryPage() {
           </section>
         )}
       </main>
-
+      <MeetTheTeamCTA />
       <Footer />
     </>
   );
