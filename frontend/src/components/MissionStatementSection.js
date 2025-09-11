@@ -37,6 +37,12 @@ export default function MissionStatementSection() {
         <img src="/icons/cloudsection.svg" alt="" className={styles.cloudSvg} />
       </div>
 
+      {/* Decorative SVGs */}
+      <img src="/icons/red-baron.svg" alt="" className={styles.svgDecor1} aria-hidden="true" />
+      <img src="/icons/balloon.svg" alt="" className={styles.svgDecor2} aria-hidden="true" />
+      <img src="/icons/plane1.svg" alt="" className={styles.svgDecor3} aria-hidden="true" />
+      <img src="/icons/helicopter1.svg" alt="" className={styles.svgDecor4} aria-hidden="true" />
+
       <div className={styles.content}>
         {/* Animated, bobbing title */}
         <h2 className={styles.title} aria-label={title}>
