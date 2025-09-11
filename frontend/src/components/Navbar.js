@@ -45,9 +45,8 @@ export default function Navbar() {
 
   const links = [
     { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
     { href: "/gallery", label: "Gallery" },
-    { href: "/team", label: "Team" },
+    { href: "/team", label: "Whānau" },
     { href: "/contact", label: "Contact" },
   ];
 
@@ -106,6 +105,8 @@ export default function Navbar() {
       <div
         id="mobile-menu"
         className={`${styles.mobileDrawer} ${open ? styles.mobileOpen : ""}`}
+        role="dialog"
+        aria-modal="true"
       >
         <ul className={styles.mobileList}>
           {links.map((link) => (

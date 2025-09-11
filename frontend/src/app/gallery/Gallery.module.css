@@ -1,0 +1,140 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #fff7e6 0%, #f0f8ff 100%);
+  padding: 8rem 2rem 4rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Title (bobbing letters) */
+.title {
+  font-family: var(--font-modak), cursive;
+  font-size: 4rem;
+  margin-bottom: 1.75rem;
+  color: #ffffff;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+}
+.letters { display: inline-block; }
+.letter { display: inline-block; animation: letterBob 2200ms ease-in-out infinite; transform-origin: 50% 100%; }
+.space { display: inline-block; width: 0.6ch; }
+@keyframes letterBob {
+  0%   { transform: translateY(0) rotate(0deg); }
+  20%  { transform: translateY(-6px) rotate(-2deg); }
+  40%  { transform: translateY(0) rotate(0.6deg); }
+  60%  { transform: translateY(-3px) rotate(1.2deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .letter { animation: none !important; transform: none !important; }
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2.25rem;
+  flex-wrap: wrap;
+}
+.filterBtn {
+  background: rgba(255,255,255,0.85);
+  border: 2px solid #ffeb3b;
+  border-radius: 999px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: var(--font-atma), sans-serif;
+}
+.filterBtn:hover { background: #ffeb3b; color: #333; }
+.activeFilter { background: #ffeb3b; color: #333; }
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Polaroid style */
+.polaroid {
+  --rot: 0deg;
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px 10px 56px; /* thick bottom for caption */
+  box-shadow: 0 10px 16px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+  transform: rotate(var(--rot));
+  transition: transform .25s ease, box-shadow .25s ease;
+  position: relative;
+  will-change: transform;
+}
+
+.polaroid::before {
+  /* subtle texture / paper vibe */
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background: radial-gradient(120% 120% at 10% 0%, rgba(255,255,255,0.6), transparent 60%);
+  pointer-events: none;
+}
+
+.polaroid:hover {
+  transform: rotate(0deg) translateY(-6px) scale(1.02);
+  box-shadow: 0 16px 26px rgba(0,0,0,0.18), 0 6px 12px rgba(0,0,0,0.08);
+}
+
+/* Photo area */
+.photoWrap {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #f2f2f2;
+}
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .4s ease;
+}
+.polaroid:hover .image {
+  transform: scale(1.03);
+}
+
+/* Caption (bottom of the polaroid) */
+.caption {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  width: 100%;
+  padding: 0 10px;
+  text-align: center;
+  font-family: var(--font-atma), sans-serif;
+  font-weight: 700;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+/* Empty state */
+.emptyNote {
+  grid-column: 1 / -1;
+  background: rgba(255,255,255,0.8);
+  border: 2px dashed #ffeb3b;
+  border-radius: 12px;
+  padding: 1rem;
+  color: #555;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .title { font-size: 3rem; }
+  .grid { gap: 1rem; }
+}
+@media (max-width: 480px) {
+  .title { font-size: 2.3rem; }
+  .filterBtn { padding: 0.4rem 0.9rem; font-size: 0.9rem; }
+}
