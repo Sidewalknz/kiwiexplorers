@@ -3,11 +3,11 @@
   background: #e9f7fa;           /* sky colour continues */
   color: #fff;
   text-align: center;
-  padding: 7rem 2rem 2rem;       /* more top padding so text sits lower */
+  padding: 7rem 2rem 2rem;
   overflow: hidden;
 
   /* Pull the footer upward so hills overlay the section above */
-  margin-top: -90px;             /* less overlap (was -120px) */
+  margin-top: -90px;
   z-index: 1;
 }
 
@@ -28,32 +28,43 @@
 .content {
   position: relative;
   z-index: 1;                            /* above hills */
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
+/* Contact */
+.contact {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+/* Copy */
 .copy {
   font-size: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.25rem;
 }
 
-/* Footer nav */
-.nav {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+/* Credit */
+.credit {
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
 }
 
-.nav a {
-  color: #fff;
+/* Links */
+.link {
+  color: #ffeb3b;               /* fun kiwi yellow */
   font-weight: 600;
   text-decoration: none;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, text-decoration-color 0.2s ease;
 }
-
-.nav a:hover {
-  opacity: 0.8;
+.link:hover {
+  opacity: 0.9;
+  text-decoration: underline;
 }
 
 /* Responsive */
@@ -65,11 +76,15 @@
 @media (max-width: 768px) {
   .hills { height: 200px; }
   .footer { margin-top: -70px; padding-top: 5.5rem; }
-  .nav { gap: 1rem; }
-  .copy { font-size: 0.9rem; }
+  .contact { font-size: 1rem; }
+  .copy { font-size: 0.95rem; }
+  .credit { font-size: 0.88rem; }
 }
 
 @media (max-width: 480px) {
   .hills { height: 180px; }
   .footer { margin-top: -60px; padding-top: 5rem; }
+  .contact { font-size: 0.95rem; }
+  .copy { font-size: 0.92rem; }
+  .credit { font-size: 0.85rem; }
 }
