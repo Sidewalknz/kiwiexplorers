@@ -1,6 +1,32 @@
-// src/components/AgeGroupsSection.js
+"use client";
+
+import { useState, useCallback } from "react";
 import Image from "next/image";
 import styles from "./AgeGroupsSection.module.css";
+
+/** Inline toggle term: shows Māori first, switches to English when clicked */
+function Term({ maori, english }) {
+  const [showEnglish, setShowEnglish] = useState(false);
+  const toggle = useCallback(() => setShowEnglish((v) => !v), []);
+
+  return (
+    <span
+      className={styles.term}
+      onClick={toggle}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggle();
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={`${showEnglish ? english : maori} — click to toggle translation`}
+    >
+      <strong>{showEnglish ? english : maori}</strong>
+    </span>
+  );
+}
 
 export default function AgeGroupsSection() {
   const title = "Our Age Groups";
@@ -13,8 +39,14 @@ export default function AgeGroupsSection() {
       ages: "6 months – 2 years",
       img: "/images/age1.jpg",
       imgAlt: "Infant playing with soft blocks",
-      blurb:
-        "Gentle beginnings with manaaki (care) and aroha (love). We nurture tamariki as they explore through play, routine, and calm sensory experiences.",
+      blurb: (
+        <>
+          Gentle beginnings with <Term maori="manaaki" english="care" /> and{" "}
+          <Term maori="aroha" english="love" />. We nurture{" "}
+          <Term maori="tamariki" english="children" /> as they explore through
+          play, routine, and calm sensory experiences.
+        </>
+      ),
     },
     {
       key: "early",
@@ -23,8 +55,16 @@ export default function AgeGroupsSection() {
       ages: "2 – 3 years",
       img: "/images/age2.jpg",
       imgAlt: "Toddler painting at a low table",
-      blurb:
-        "Curiosity blossoms! We lean into ako (learning together), waiata (song), and pukapuka (books) to build language, independence, and whanaungatanga (relationships).",
+      blurb: (
+        <>
+          Curiosity blossoms! We lean into{" "}
+          <Term maori="ako" english="learning together" />,{" "}
+          <Term maori="waiata" english="song" />, and{" "}
+          <Term maori="pukapuka" english="books" /> to build language,
+          independence, and{" "}
+          <Term maori="whanaungatanga" english="relationships" />.
+        </>
+      ),
     },
     {
       key: "junior",
@@ -33,19 +73,19 @@ export default function AgeGroupsSection() {
       ages: "3 – 4 years",
       img: "/images/age3.jpg",
       imgAlt: "Preschoolers collaborating with blocks",
-      blurb:
-        "Preparing for school with rich play, problem-solving, and teamwork. We build confidence, tikanga (values), and a love of learning.",
+      blurb: (
+        <>
+          Preparing for school with rich play, problem-solving, and teamwork. We
+          build confidence, <Term maori="tikanga" english="values" />, and a love
+          of learning.
+        </>
+      ),
     },
   ];
 
   return (
     <section className={styles.section}>
-      {/* Cloudy top divider */}
-      <div className={styles.cloudTop} aria-hidden="true">
-        <img src="/icons/cloudsection.svg" alt="" className={styles.cloudSvg} />
-      </div>
-
-      {/* Animated title */}
+      {/* Animated, bobbing title */}
       <h2 className={styles.title} aria-label={title}>
         <span className={styles.letters}>
           {Array.from(title).map((ch, i) =>

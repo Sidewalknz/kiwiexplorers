@@ -1,38 +1,15 @@
 .section {
   position: relative;
   min-height: 100vh;
-  background: #f0f8ff; /* light sky blue background */
+  background: #fff7e6; /* warm background */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 7rem 2rem 4rem; /* extra top padding to clear the cloud divider */
+  padding: 6rem 2rem 4rem;
   text-align: center;
   overflow: hidden;
-}
-
-/* Cloudy top divider */
-.cloudTop {
-  position: absolute;
-  top: -1px; /* avoid seams */
-  left: 0;
-  width: 100%;
-  height: auto;
-  line-height: 0;
-  z-index: 0;
-}
-
-.cloudSvg {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* Content sits above the cloud svg */
-.title,
-.groups {
-  position: relative;
-  z-index: 1;
+  transition: background 1s ease-in-out; /* smooth fade feel */
 }
 
 /* ---------- Animated Title ---------- */
@@ -42,7 +19,7 @@
   margin-bottom: 2rem;
   color: #ffffff;
   line-height: 1.1;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 }
 
 .letters { display: inline-block; }
@@ -72,7 +49,7 @@
   gap: 2rem;
   max-width: 1200px;
   width: 100%;
-  text-align: left; /* better for paragraphs under images */
+  text-align: left;
 }
 
 /* Card */
@@ -80,7 +57,7 @@
   background: #ffffff;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* round image corners too */
+  overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
@@ -95,8 +72,8 @@
 .media {
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 2;               /* consistent crop */
-  background: #e6f3ff;
+  aspect-ratio: 3 / 2;
+  background: #ffe;
 }
 
 .cardImage {
@@ -146,14 +123,11 @@
 }
 
 /* ---------- Responsive ---------- */
-
-/* Tablets (2-column layout) */
 @media (max-width: 1200px) {
   .groups { grid-template-columns: repeat(2, 1fr); }
   .title { font-size: 4rem; }
 }
 
-/* Mobile (1-column layout) */
 @media (max-width: 768px) {
   .groups { grid-template-columns: 1fr; }
   .title  { font-size: 3rem; }
@@ -162,7 +136,6 @@
   .ageBadge { font-size: 0.85rem; padding: 0.3rem 0.6rem; }
 }
 
-/* Small phones */
 @media (max-width: 480px) {
   .title { font-size: 2.3rem; }
   .cardTitle { font-size: 1.1rem; }

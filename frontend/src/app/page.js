@@ -1,12 +1,13 @@
 import Hero from "../components/Hero";
 import AgeGroupsSection from "../components/AgeGroupsSection";
+import MissionStatementSection from "@/components/MissionStatementSection";
 
 export default function HomePage() {
   return (
     <>
-      <Hero />
-      <AgeGroupsSection />
-      {/* Future: Gallery Preview, Call-to-Action, etc. */}
+    <Hero />
+    <MissionStatementSection />
+    <AgeGroupsSection />
     </>
   );
 }
