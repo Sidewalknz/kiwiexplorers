@@ -56,7 +56,7 @@ export default function Hero() {
   return (
     <section id="hero" className={`${styles.hero} ${mounted ? styles.mounted : ""}`}>
       <div className={styles.content}>
-        <h1 className={styles.title}>Welcome to Kiwiexplorers</h1>
+        <h1 className={styles.title}>Welcome to KiwiExplorers</h1>
         <p className={styles.subtitle}>Nurturing young minds through play and exploration</p>
 
         <div className={styles.buttons}>

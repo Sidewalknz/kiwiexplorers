@@ -21,11 +21,6 @@ export default function Footer() {
           </a>
         </div>
 
-        {/* Copyright */}
-        <p className={styles.copy}>
-          © {new Date().getFullYear()} Kiwi Explorers Early Education Centre
-        </p>
-
         {/* Designer credit */}
         <p className={styles.credit}>
           Website by{" "}

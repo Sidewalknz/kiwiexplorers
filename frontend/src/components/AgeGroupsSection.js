@@ -85,6 +85,26 @@ export default function AgeGroupsSection() {
 
   return (
     <section className={styles.section}>
+      {/* Decorative SVGs (toy plane, balloons, kite) */}
+      <img
+        src="/icons/toyplane.svg"
+        alt=""
+        className={`${styles.svgDecor} ${styles.decA}`}
+        aria-hidden="true"
+      />
+      <img
+        src="/icons/balloons.svg"
+        alt=""
+        className={`${styles.svgDecor} ${styles.decB}`}
+        aria-hidden="true"
+      />
+      <img
+        src="/icons/kite.svg"
+        alt=""
+        className={`${styles.svgDecor} ${styles.decC}`}
+        aria-hidden="true"
+      />
+
       {/* Animated, bobbing title */}
       <h2 className={styles.title} aria-label={title}>
         <span className={styles.letters}>

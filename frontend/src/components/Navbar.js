@@ -60,7 +60,7 @@ export default function Navbar() {
       <div className={styles.logo}>
         <Link href="/" aria-label="Home">
           {hasLogo ? (
-            <Image src="/logo.png" alt="Kiwiexplorers Logo" width={50} height={50} />
+            <Image src="/logo.png" alt="KiwiExplorers Logo" width={50} height={50} />
           ) : (
             <span className={styles.siteTitle}>Kiwiexplorers</span>
           )}

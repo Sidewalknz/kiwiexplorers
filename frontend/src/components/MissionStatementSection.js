@@ -94,7 +94,7 @@ export default function MissionStatementSection() {
             together when learning is guided by genuine care. We provide a
             stimulating, safe environment with rich, uninterrupted play.{" "}
             <Term maori="Kaiako" english="teachers" /> act as encouragers and
-            resources—facilitating, scaffolding and celebrating each child’s
+            resources, facilitating, scaffolding and celebrating each child’s
             ideas and endeavours.
           </p>
         </div>
