@@ -19,10 +19,8 @@ const FILTERS = [
 ];
 
 /** Probe /gallery for e|j|l + number .jpg files using HEAD (fast) */
-async function probeGallery({ maxPerGroup = 100, missStreakLimit = 5 } = {}) {
+async function probeGallery({ maxPerGroup = 60, missStreakLimit = 5 } = {}) {
   const results = [];
-
-  // Scan each prefix independently so they can have different counts
   for (const code of Object.keys(GROUPS)) {
     let misses = 0;
     for (let n = 1; n <= maxPerGroup; n++) {
@@ -31,24 +29,22 @@ async function probeGallery({ maxPerGroup = 100, missStreakLimit = 5 } = {}) {
         const res = await fetch(base, { method: "HEAD", cache: "no-cache" });
         if (res.ok) {
           results.push({
-            base,           // full path with .jpg (we know extension now)
+            base,
             alt: `${GROUPS[code]} photo ${n}`,
             group: GROUPS[code],
             code,
             n,
           });
-          misses = 0; // reset since we found one
+          misses = 0;
         } else {
           misses++;
         }
       } catch {
         misses++;
       }
-      // Break early if we’ve missed a handful in a row (handles gaps but stops scanning)
       if (misses >= missStreakLimit) break;
     }
   }
-
   return results;
 }
 
@@ -67,11 +63,13 @@ export default function GalleryPage() {
       const found = await probeGallery({ maxPerGroup: 60, missStreakLimit: 5 });
       if (!mounted) return;
 
-      // Randomize order a bit and add a small rotation for the polaroid vibe
-      const shuffled = [...found].sort(() => Math.random() - 0.5).map((img) => ({
-        ...img,
-        rot: (Math.random() - 0.5) * 8, // -4..+4 deg
-      }));
+      const shuffled = [...found]
+        .sort(() => Math.random() - 0.5)
+        .map((img) => ({
+          ...img,
+          rot: (Math.random() - 0.5) * 8, // -4..+4 deg
+        }));
+
       setImages(shuffled);
       setLoading(false);
     })();
@@ -88,45 +86,14 @@ export default function GalleryPage() {
     return images;
   }, [active, images]);
 
-  // ---------------- Lightbox ----------------
-  const [isOpen, setIsOpen] = useState(false);
-  const [lightIndex, setLightIndex] = useState(0);
-
-  const openAt = (idx) => { setLightIndex(idx); setIsOpen(true); };
-  const close = () => setIsOpen(false);
-  const prev = () => setLightIndex((i) => (i - 1 + filtered.length) % filtered.length);
-  const next = () => setLightIndex((i) => (i + 1) % filtered.length);
-
-  // Keyboard + scroll lock
-  useEffect(() => {
-    if (!isOpen) return;
-    const onKey = (e) => {
-      if (e.key === "Escape") close();
-      else if (e.key === "ArrowLeft") prev();
-      else if (e.key === "ArrowRight") next();
-    };
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", onKey);
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prevOverflow;
-    };
-  }, [isOpen, filtered.length]);
-
-  // Keep lightbox sane if filter changes
-  useEffect(() => {
-    if (isOpen && filtered.length === 0) setIsOpen(false);
-    if (isOpen && lightIndex >= filtered.length) setLightIndex(0);
-  }, [filtered.length, isOpen, lightIndex]);
-
-  const current = isOpen ? filtered[lightIndex] : null;
-  const nextItem =
-    isOpen && filtered.length > 1 ? filtered[(lightIndex + 1) % filtered.length] : null;
-
   return (
     <>
       <main className={styles.page}>
+        {/* Sunset decorative icons */}
+        <img src="/icons/kite.svg" alt="" className={styles.svgKite} aria-hidden="true" />
+        <img src="/icons/balloons.svg" alt="" className={styles.svgBalloons} aria-hidden="true" />
+        <img src="/icons/toyplane.svg" alt="" className={styles.svgPlane} aria-hidden="true" />
+
         {/* Animated Title */}
         <h1 className={styles.title} aria-label={title}>
           <span className={styles.letters}>
@@ -168,29 +135,22 @@ export default function GalleryPage() {
           <p className={styles.loading}>Loading photos…</p>
         ) : (
           <section className={styles.grid} aria-live="polite">
-            {filtered.map((img, i) => (
+            {filtered.map((img) => (
               <figure
                 key={`${img.code}-${img.n}`}
                 className={styles.polaroid}
                 style={{ "--rot": `${img.rot}deg` }}
               >
-                <button
-                  type="button"
-                  className={styles.openBtn}
-                  onClick={() => openAt(i)}
-                  aria-label={`Open ${img.alt} in lightbox`}
-                >
-                  <div className={styles.photoWrap}>
-                    <Image
-                      src={img.base}
-                      alt={img.alt}
-                      width={800}
-                      height={600}
-                      className={styles.image}
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                  </div>
-                </button>
+                <div className={styles.photoWrap}>
+                  <Image
+                    src={img.base}
+                    alt={img.alt}
+                    width={800}
+                    height={600}
+                    className={styles.image}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                </div>
                 <figcaption className={styles.caption}>{img.group}</figcaption>
               </figure>
             ))}
@@ -198,61 +158,6 @@ export default function GalleryPage() {
               <p className={styles.emptyNote}>No photos yet for this group — check back soon!</p>
             )}
           </section>
-        )}
-
-        {/* Lightbox */}
-        {isOpen && current && (
-          <div
-            className={styles.lbOverlay}
-            role="dialog"
-            aria-modal="true"
-            aria-label={`${current.group} image`}
-            onClick={(e) => { if (e.target === e.currentTarget) close(); }}
-          >
-            <div className={styles.lbInner}>
-              <button type="button" className={styles.lbClose} onClick={close} aria-label="Close">
-                ×
-              </button>
-
-              <button
-                type="button"
-                className={`${styles.lbNav} ${styles.lbPrev}`}
-                onClick={(e) => { e.stopPropagation(); prev(); }}
-                aria-label="Previous image"
-              >
-                ‹
-              </button>
-
-              <figure className={styles.lbFigure}>
-                <div className={styles.lbImgWrap}>
-                  <Image
-                    key={current.base}
-                    src={current.base}
-                    alt={current.alt}
-                    fill
-                    sizes="90vw"
-                    className={styles.lbImg}
-                    priority
-                  />
-                </div>
-                <figcaption className={styles.lbCaption}>{current.group}</figcaption>
-              </figure>
-
-              <button
-                type="button"
-                className={`${styles.lbNav} ${styles.lbNext}`}
-                onClick={(e) => { e.stopPropagation(); next(); }}
-                aria-label="Next image"
-              >
-                ›
-              </button>
-            </div>
-
-            {/* silent preload of next */}
-            {nextItem && (
-              <img src={nextItem.base} alt="" width="1" height="1" style={{ display: "none" }} />
-            )}
-          </div>
         )}
       </main>
 

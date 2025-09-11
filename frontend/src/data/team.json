@@ -1,0 +1,131 @@
+[
+  {
+    "id": "rebecca",
+    "base": "/team/rebecca",
+    "name": "Rebecca Dudley",
+    "title": "Centre Owner / Manager / ECE Teacher",
+    "group": "",
+    "bio": "A qualified, fully certificated teacher, Bex manages both Kiwi Explorers and Little Kiwi Explorers. You will also find her working with the children. Bex has an affinity for running a respectful centre where the teachers all feel like part of an extended whānau and love their jobs at Kiwi or Little Kiwi. This also reflects in the respectful relationships that Bex forms with all whānau who enrol their children at the centre. Bex managed an ECE Centre in North West Auckland and has worked with all age groups previously to opening and running Kiwi Explorers Early Education Centre."
+  },
+  {
+    "id": "cath",
+    "base": "/team/cath",
+    "name": "Cath Wikaira",
+    "title": "Centre Supervisor / ECE Teacher",
+    "group": "",
+    "bio": "Cath is a fully qualified, certificated teacher with many years of ECE experience. She is very keen to share her skills and knowledge with the Kiwi Explorers team. Cath works alongside Bex in the office helping with all the paperwork and finds this a very interesting and inspiring role."
+  },
+
+  {
+    "id": "abbie",
+    "base": "/team/abbie",
+    "name": "Abbie Willetts",
+    "title": "ECE Teacher",
+    "group": "Junior Explorers",
+    "bio": "Abbie is a fully qualified and certificated teacher with a calm pleasant nature. She works with the Junior Explorers and brings lots of fun activities. Abbie loves to watch the children form friendships and supports them in developing these relationships in a caring, responsive manner. She enjoys setting up PMP activities and extending children’s skills in this area."
+  },
+  {
+    "id": "mikayla",
+    "base": "/team/mikayla",
+    "name": "Mikayla Stanbridge-Brien",
+    "title": "ECE Teacher",
+    "group": "Little Explorers",
+    "bio": "Mikayla works at Little Kiwi Explorers and is one of the team leaders there, a role she finds very satisfying. She builds fantastic warm caring relationships with tamariki and their whānau. Mikayla is a keen football player and either plays, coaches, or cheers from the sideline all year round."
+  },
+  {
+    "id": "tracey",
+    "base": "/team/tracey",
+    "name": "Tracey Browning",
+    "title": "ECE Teacher",
+    "group": "Early Explorers",
+    "bio": "Tracey is a fully certificated kaiako with 15 years of teaching experience. She works in the Early Explorers and looks forward to learning about all tamariki and their interests."
+  },
+  {
+    "id": "amber",
+    "base": "/team/amber",
+    "name": "Amber Brown",
+    "title": "ECE Teacher",
+    "group": "Little Explorers",
+    "bio": "Amber works at Little Kiwi Explorers and is often found setting up amazing activities both inside and outside."
+  },
+  {
+    "id": "naomi",
+    "base": "/team/naomi",
+    "name": "Naomi Smith",
+    "title": "ECE Teacher",
+    "group": "Junior Explorers",
+    "bio": "Naomi has joined the Junior Explorers as a qualified teacher. She has been working in ECE for fourteen years and lives in Nelson with her partner and their four children. Naomi works alongside tamariki, building their experiences in a calm, thoughtful manner."
+  },
+  {
+    "id": "paige",
+    "base": "/team/paige",
+    "name": "Paige Brown",
+    "title": "ECE Teacher",
+    "group": "Little Explorers",
+    "bio": "Paige is a fully qualified ECE teacher and one of the team leaders at Little Kiwi Explorers. She forms amazing relationships with tamariki and inspires her team as a leader. Paige has musical talent and often sings or plays guitar for the children. She is also an avid football player."
+  },
+  {
+    "id": "nic",
+    "base": "/team/nic",
+    "name": "Nic Erskine",
+    "title": "Teacher",
+    "group": "Early Explorers",
+    "bio": "Nic works in the Early Explorers and has over ten years of ECE experience. Nic sets up fun, thought-provoking activities for tamariki."
+  },
+  {
+    "id": "jessie",
+    "base": "/team/jessie",
+    "name": "Jessie Williams",
+    "title": "ECE Teacher",
+    "group": "Little Explorers",
+    "bio": "Jessie is a fully qualified ECE teacher who brings vast knowledge to the Little Kiwi Explorers team. She has worked in a variety of ECE roles and is excited to get to know all the whānau at Little Kiwi."
+  },
+  {
+    "id": "wendy",
+    "base": "/team/wendy",
+    "name": "Wendy Linden",
+    "title": "Teacher",
+    "group": "Junior Explorers",
+    "bio": "Wendy is a permanent part-time teacher in the Junior Explorers. Originally from Wales, she brings lots of exciting activities to share. Wendy always has a happy smile and enjoys playing with children while following their interests."
+  },
+  {
+    "id": "katherine",
+    "base": "/team/katherine",
+    "name": "Katherine Rackley",
+    "title": "Teacher",
+    "group": "Little Explorers",
+    "bio": "Katherine works part-time (3 days a week) with the Little Kiwi team and also supports other rooms when needed. She forms strong bonds with tamariki and supports teachers with daily routines."
+  },
+  {
+    "id": "claire",
+    "base": "/team/claire",
+    "name": "Claire Thomson",
+    "title": "Teacher",
+    "group": "Little Explorers",
+    "bio": "Claire works in the Little Explorers after spending time with the Early Explorers. She has a lot of ECE experience and is an important team member. Claire loves reading stories with tamariki or playing games outside."
+  },
+  {
+    "id": "lily",
+    "base": "/team/lily",
+    "name": "Lily McManaway",
+    "title": "Teacher in Training",
+    "group": "Little Explorers",
+    "bio": "Lily works with the Little Explorers and has begun her training to become a qualified teacher. She also relieves across classes and is loved by tamariki who enjoy the activities she sets up."
+  },
+  {
+    "id": "reese",
+    "base": "/team/reese",
+    "name": "Reese Reiri-Mangai",
+    "title": "Teacher in Training",
+    "group": "Early Explorers",
+    "bio": "Reese works in the Early Explorers and advocates for play-based learning while fostering a love for nature. She has five years of ECE experience, previously studied primary teaching, and has now begun her ECE training."
+  },
+  {
+    "id": "nelmarie",
+    "base": "/team/nelmarie",
+    "name": "Nelmarie Pretorius",
+    "title": "Teacher",
+    "group": "Relief",
+    "bio": "Nelmarie is from South Africa and is a fully qualified teacher there. She has been relieving at both Kiwi and Little Kiwi Explorers. Nelmarie is always surrounded by engaged tamariki enjoying her fun activities."
+  }
+]
