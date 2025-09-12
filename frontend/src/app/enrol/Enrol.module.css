@@ -1,17 +1,13 @@
 .section {
   position: relative;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #f0f8ff 0%, #fff7e6 100%); /* blends from hero/mission vibe */
-  padding: 10rem 2rem 4rem;
+  background: linear-gradient(to bottom, #f0f8ff 0%, #fff7e6 100%);
+  padding: 8rem 2rem 4rem;
   text-align: center;
   overflow: hidden;
 }
 
-/* Cloud divider */
-.cloudTop { position: absolute; top: -1px; left: 0; width: 100%; z-index: 0; line-height: 0; }
-.cloudSvg  { display: block; width: 100%; height: auto; }
-
-/* Decorations */
+/* Decorations (no clouds) */
 .dec1, .dec2 {
   position: absolute; z-index: 0; opacity: 0.9; animation: float 7.5s ease-in-out infinite;
 }
@@ -73,12 +69,50 @@
 .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
 .field { display: grid; gap: 0.35rem; }
 .field label { font-weight: 700; color: #333; font-family: var(--font-atma), sans-serif; }
-.field input, .field select, .field textarea {
-  border-radius: 12px; border: 2px solid rgba(0,0,0,0.08); padding: 0.7rem 0.9rem; font-size: 1rem; background: #fff; outline: none;
+
+/* Readable text inside fields (typed, placeholder, and autofill) */
+.field input,
+.field select,
+.field textarea {
+  border-radius: 12px;
+  border: 2px solid rgba(0,0,0,0.08);
+  padding: 0.7rem 0.9rem;
+  font-size: 1rem;
+  background: #fff;
+  outline: none;
   transition: border-color .2s ease, box-shadow .2s ease;
+  color: #333;            /* typed value color to match labels/body */
+  caret-color: #333;      /* visible cursor */
 }
-.field input:focus, .field select:focus, .field textarea:focus {
-  border-color: #0b74d1; box-shadow: 0 0 0 4px rgba(11,116,209,0.12);
+
+/* Placeholder text */
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #666;            /* readable but lower emphasis */
+  opacity: 1;
+}
+
+/* Options within selects (for some browsers) */
+.field select,
+.field select option {
+  color: #333;
+}
+
+/* Focus ring */
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: #0b74d1;
+  box-shadow: 0 0 0 4px rgba(11,116,209,0.12);
+}
+
+/* WebKit autofill fix */
+.field input:-webkit-autofill,
+.field select:-webkit-autofill,
+.field textarea:-webkit-autofill {
+  -webkit-text-fill-color: #333 !important;
+  box-shadow: 0 0 0 1000px #fff inset;
+  transition: background-color 9999s ease-out 0s;
 }
 
 /* Days chips */

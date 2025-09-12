@@ -84,12 +84,7 @@ export default function EnrolPage() {
   return (
     <>
       <section className={styles.section}>
-        {/* Cloudy divider for continuity */}
-        <div className={styles.cloudTop} aria-hidden="true">
-          <img src="/icons/cloudsection.svg" alt="" className={styles.cloudSvg} />
-        </div>
-
-        {/* Playful decorations */}
+        {/* Playful decorations (no clouds) */}
         <img src="/icons/balloons.svg" alt="" className={styles.dec1} aria-hidden="true" />
         <img src="/icons/kite.svg" alt="" className={styles.dec2} aria-hidden="true" />
 
@@ -193,10 +188,9 @@ export default function EnrolPage() {
 
             {status.msg && (
               <p
-                className={`${styles.status} ${
-                  status.type === "ok" ? styles.ok : styles.err
-                }`}
+                className={`${styles.status} ${status.type === "ok" ? styles.ok : styles.err}`}
                 role="status"
+                aria-live="polite"
               >
                 {status.msg}
               </p>

@@ -2,12 +2,13 @@
 
 import { useMemo, useState } from "react";
 import Footer from "@/components/Footer";
+import EnrolNowCTA from "@/components/EnrolNowCTA";
 import styles from "./Contact.module.css";
 
 export default function ContactPage() {
   const title = "Contact Us";
 
-  // animated letters (same pattern you’ve used)
+  // animated letters
   const letters = useMemo(
     () =>
       Array.from(title).map((ch, i) =>
@@ -28,7 +29,6 @@ export default function ContactPage() {
     [title]
   );
 
-  // simple client-side form handling
   const [status, setStatus] = useState({ type: "", msg: "" });
   const [busy, setBusy] = useState(false);
 
@@ -42,7 +42,7 @@ export default function ContactPage() {
     const message = (fd.get("message") || "").toString().trim();
 
     if (!name || !email || !message) {
-      setStatus({ type: "error", msg: "Please fill in all required fields." });
+      setStatus({ type: "err", msg: "Please fill in all required fields." });
       return;
     }
 
@@ -52,15 +52,13 @@ export default function ContactPage() {
       await new Promise((r) => setTimeout(r, 600));
       setStatus({
         type: "ok",
-        msg:
-          "Thanks! We’ve received your message. We’ll get back to you shortly.",
+        msg: "Thanks! We’ve received your message. We’ll get back to you shortly.",
       });
       e.currentTarget.reset();
     } catch {
       setStatus({
-        type: "error",
-        msg:
-          "Sorry, something went wrong. You can email us directly at kiwiexplorerseec@gmail.com.",
+        type: "err",
+        msg: "Sorry, something went wrong. You can email us directly at kiwiexplorerseec@gmail.com.",
       });
     } finally {
       setBusy(false);
@@ -70,12 +68,7 @@ export default function ContactPage() {
   return (
     <>
       <section className={styles.section} id="contact">
-        {/* Flipped cloud divider for a nice transition from previous section */}
-        <div className={styles.cloudTop} aria-hidden="true">
-          <img src="/icons/cloudsection2.svg" alt="" className={styles.cloudSvg} />
-        </div>
-
-        {/* Decorative Sun + Birds (reused vibe) */}
+        {/* Decorative Sun + Birds (no clouds) */}
         <img src="/icons/sun.svg" alt="" className={styles.sunSvg} aria-hidden="true" />
         <img src="/icons/bird1.svg" alt="" className={styles.bird1} aria-hidden="true" />
         <img src="/icons/bird2.svg" alt="" className={styles.bird2} aria-hidden="true" />
@@ -93,10 +86,7 @@ export default function ContactPage() {
               <div className={styles.cardValue}>027 4567340</div>
             </a>
 
-            <a
-              className={styles.card}
-              href="mailto:kiwiexplorerseec@gmail.com"
-            >
+            <a className={styles.card} href="mailto:kiwiexplorerseec@gmail.com">
               <div className={styles.cardLabel}>Email</div>
               <div className={styles.cardValue}>kiwiexplorerseec@gmail.com</div>
             </a>
@@ -121,15 +111,20 @@ export default function ContactPage() {
               </div>
               <div className={styles.field}>
                 <label htmlFor="message">Message*</label>
-                <textarea id="message" name="message" rows={6} placeholder="Kia ora! How can we help?" required />
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={6}
+                  placeholder="Kia ora! How can we help?"
+                  required
+                />
               </div>
 
               {status.msg && (
                 <p
-                  className={`${styles.status} ${
-                    status.type === "ok" ? styles.ok : styles.err
-                  }`}
+                  className={`${styles.status} ${status.type === "ok" ? styles.ok : styles.err}`}
                   role="status"
+                  aria-live="polite"
                 >
                   {status.msg}
                 </p>
@@ -170,6 +165,7 @@ export default function ContactPage() {
         </div>
       </section>
 
+      <EnrolNowCTA />
       <Footer />
     </>
   );
