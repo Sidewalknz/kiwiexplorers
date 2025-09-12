@@ -133,7 +133,14 @@ export default function GalleryPage() {
 
         {/* Loading / Grid */}
         {loading ? (
-          <p className={styles.loading}>Loading photos…</p>
+          <div className={styles.loadingWrap} role="status" aria-live="polite" aria-busy="true">
+            <img
+              src="/icons/loading.svg"
+              alt="Loading photos…"
+              className={styles.loadingImg}
+            />
+            <span className={styles.srOnly}>Loading photos…</span>
+          </div>
         ) : (
           <section className={styles.grid} aria-live="polite">
             {filtered.map((img) => (
