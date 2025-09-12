@@ -90,7 +90,7 @@ export default function WhanauPage() {
         {/* Night-sky decorative SVGs */}
         <img src="/icons/moon.svg" alt="" className={styles.svgMoon} aria-hidden="true" />
         <img src="/icons/star1.svg" alt="" className={styles.svgStar1} aria-hidden="true" />
-        <img src="/icons/star2.svg" alt="" className={styles.svgStar2} aria-hidden="true" />
+        <img src="/icons/astronaut.svg" alt="" className={styles.svgStar2} aria-hidden="true" />
         <img src="/icons/rocket.svg" alt="" className={styles.svgRocket} aria-hidden="true" />
         <img src="/icons/comet.svg" alt="" className={styles.svgComet} aria-hidden="true" />
 
@@ -179,7 +179,6 @@ export default function WhanauPage() {
                       <h3 className={styles.backName}>{p.name}</h3>
                       <p className={styles.backGroup}>{p.group}</p>
                       <p className={styles.backBio}>{p.bio}</p>
-                      <span className={styles.flipHint}>Click to flip back</span>
                     </div>
                   </div>
                 </div>

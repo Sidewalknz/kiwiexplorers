@@ -204,10 +204,11 @@
 }
 .backInner {
   display: grid;
-  grid-template-rows: auto auto 1fr auto;
+  grid-template-rows: auto auto 1fr; /* no trailing control row */
   gap: 0.5rem;
   height: 100%;
   padding: 1rem;
+  overflow: hidden; /* contain inner scroller */
 }
 .backName {
   margin: 0;
@@ -227,17 +228,16 @@
   color: #e9f0ff;
   line-height: 1.6;
   font-size: 0.98rem;
-  overflow: auto;
+  overflow: auto;                 /* scroll long bios */
+  padding-right: 0.25rem;         /* breathing room for scrollbar */
+  overscroll-behavior: contain;   /* keep scroll contained */
 }
-.flipHint {
-  justify-self: start;
-  background: #ffeb3b;
-  color: #222;
-  font-weight: 800;
-  border-radius: 999px;
-  padding: 0.35rem 0.75rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.22);
-}
+
+/* Custom (subtle) scrollbar for WebKit browsers */
+.backBio::-webkit-scrollbar { width: 8px; }
+.backBio::-webkit-scrollbar-track { background: rgba(255,255,255,0.06); border-radius: 8px; }
+.backBio::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.25); border-radius: 8px; }
+.backBio::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.35); }
 
 /* Empty state */
 .emptyNote {
