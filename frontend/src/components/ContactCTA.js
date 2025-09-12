@@ -8,14 +8,22 @@ export default function ContactCTA() {
 
   return (
     <section className={styles.section}>
-      {/* Cloudy top divider */}
-      <div className={styles.cloudTop} aria-hidden="true">
-        <img src="/icons/cloudsection4.svg" alt="" className={styles.cloudSvg} />
-      </div>
+      {/* Cloudy top divider (tiling via CSS background) */}
+      <div className={styles.cloudTop} aria-hidden="true" />
 
       {/* Decorative floaters (match mission section style) */}
-      <img src="/icons/balloon.svg" alt="" className={styles.svgDecor1} aria-hidden="true" />
-      <img src="/icons/plane1.svg" alt="" className={styles.svgDecor2} aria-hidden="true" />
+      <img
+        src="/icons/balloon.svg"
+        alt=""
+        className={styles.svgDecor1}
+        aria-hidden="true"
+      />
+      <img
+        src="/icons/plane1.svg"
+        alt=""
+        className={styles.svgDecor2}
+        aria-hidden="true"
+      />
 
       <div className={styles.content}>
         {/* Animated, bobbing title */}

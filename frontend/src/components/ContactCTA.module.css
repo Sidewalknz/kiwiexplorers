@@ -1,4 +1,8 @@
 .section {
+  /* tweak these to taste */
+  --cloud-tile-width: 1100px; /* width of each repeated cloud tile */
+  --cloud-height: 160px;      /* visual height of the cloud strip */
+
   position: relative;
   min-height: 60vh;
   background: linear-gradient(to bottom, #292d64 20%, #e9f7fa 80%);
@@ -6,7 +10,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 8rem 1.5rem;
+
+  /* remove top padding to let clouds hug the top edge */
+  padding: 0 1.5rem 7rem;
   text-align: center;
   overflow: hidden;
 }
@@ -19,10 +25,22 @@
   width: 100%;
   z-index: 0;
   line-height: 0;
+  pointer-events: none;
+
+  /* 🔁 Tile the SVG horizontally */
+  background-image: url("/icons/cloudsection4.svg");
+  background-repeat: repeat-x;
+  background-position: top left;
+  background-size: var(--cloud-tile-width) var(--cloud-height);
+  height: var(--cloud-height);
 }
-.cloudTop { top: -1px; }
-.cloudBottom { bottom: -1px; transform: rotate(180deg); }
-.cloudSvg { display: block; width: 100%; height: auto; }
+
+/* Clouds flush with edges (no gap) */
+.cloudTop { top: -12px; }
+.cloudBottom {
+  bottom: 0;
+  transform: rotate(180deg);
+}
 
 /* Decorative floating SVGs (subtle) */
 .svgDecor1,
@@ -56,7 +74,9 @@
   z-index: 1;
   max-width: 900px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+
+  /* restore the original top spacing: 7rem (was on section) + 2rem (was on content) */
+  padding: 9rem 1rem 2rem;
 }
 
 /* Title (bobbing letters) */
