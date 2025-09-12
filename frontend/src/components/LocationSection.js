@@ -7,14 +7,8 @@ export default function LocationSection() {
 
   return (
     <section className={styles.section}>
-      {/* Flipped cloud divider */}
-      <div className={styles.cloudTop} aria-hidden="true">
-        <img
-          src="/icons/cloudsection2.svg"
-          alt=""
-          className={styles.cloudSvg}
-        />
-      </div>
+      {/* Flipped cloud divider (tiling via CSS background) */}
+      <div className={styles.cloudTop} aria-hidden="true" />
 
       {/* Decorative Sun + Birds */}
       <img src="/icons/sun.svg" alt="" className={styles.sunSvg} aria-hidden="true" />
@@ -28,11 +22,7 @@ export default function LocationSection() {
           <span className={styles.letters}>
             {Array.from(title).map((ch, i) =>
               ch === " " ? (
-                <span
-                  key={`sp-${i}`}
-                  className={styles.space}
-                  aria-hidden="true"
-                >
+                <span key={`sp-${i}`} className={styles.space} aria-hidden="true">
                   &nbsp;
                 </span>
               ) : (

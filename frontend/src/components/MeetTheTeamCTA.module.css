@@ -1,17 +1,23 @@
 .section {
+  /* tweak these to taste */
+  --cloud-tile-width: 1000px; /* width of each repeated cloud tile */
+  --cloud-height: 140px;      /* visual height of the cloud strip */
+
   position: relative;
   min-height: 60vh;
-  background: linear-gradient(to bottom, #fff7e6 0%, #e9f7fa 100%);
+  background: linear-gradient(to bottom, #fff7e6 30%, #e9f7fa 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 8rem 1.5rem; /* space so clouds don't overlap content */
+
+  /* let clouds hug the top edge; move top spacing into .content */
+  padding: 0 1.5rem 7rem;
   text-align: center;
   overflow: hidden;
 }
 
-/* Clouds */
+/* Clouds (repeat-x tiling) */
 .cloudTop,
 .cloudBottom {
   position: absolute;
@@ -19,10 +25,22 @@
   width: 100%;
   z-index: 0;
   line-height: 0;
+  pointer-events: none;
+
+  background-image: url("/icons/cloudsection3.svg");
+  background-repeat: repeat-x;
+  background-position: top left;
+  background-size: var(--cloud-tile-width) var(--cloud-height);
+  height: var(--cloud-height);
 }
-.cloudTop { top: -1px; }
-.cloudBottom { bottom: -1px; transform: rotate(180deg); }
-.cloudSvg { display: block; width: 100%; height: auto; }
+
+/* Flush with edges; if you see a hairline seam at some zoom levels,
+   you can set top: -10px instead. */
+.cloudTop { top: -10px; }
+.cloudBottom {
+  bottom: 0;
+  transform: rotate(180deg);
+}
 
 /* Decorative floating SVGs (subtle) */
 .svgDecor1,
@@ -56,7 +74,9 @@
   z-index: 1;
   max-width: 900px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+
+  /* restores the original breathing room: 7rem (from section) + 2rem (content) */
+  padding: 9rem 1rem 2rem;
 }
 
 /* Title (bobbing letters) */

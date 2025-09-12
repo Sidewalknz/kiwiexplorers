@@ -1,4 +1,8 @@
 .section {
+  /* tweak these to taste */
+  --cloud-tile-width: 1100px; /* width of each repeated cloud tile */
+  --cloud-height: 160px;      /* visual height of the cloud strip */
+
   position: relative;
   min-height: 80vh;
   background: linear-gradient(to bottom, #f0f8ff 0%, #fff7e6 100%);
@@ -6,14 +10,29 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 12rem 2rem 5rem;
+
+  /* let clouds hug the top edge; move top spacing into .content */
+  padding: 0 2rem 5rem;
   text-align: center;
   overflow: hidden;
 }
 
-/* Cloud top */
-.cloudTop { position: absolute; top: -1px; left: 0; width: 100%; z-index: 0; line-height: 0; }
-.cloudSvg { display: block; width: 100%; height: auto; }
+/* Cloud top (repeat-x tiling) */
+.cloudTop {
+  position: absolute;
+  top: -12px;           /* if you ever see a thin seam at certain zooms, try top: -10px; */
+  left: 0;
+  width: 100%;
+  z-index: 0;
+  line-height: 0;
+  pointer-events: none;
+
+  background-image: url("/icons/cloudsection.svg");
+  background-repeat: repeat-x;
+  background-position: top left;
+  background-size: var(--cloud-tile-width) var(--cloud-height);
+  height: var(--cloud-height);
+}
 
 /* Decorative floating SVGs */
 .svgDecor1 {
@@ -23,6 +42,7 @@
   width: 80px;
   opacity: 0.85;
   animation: float 6s ease-in-out infinite;
+  z-index: 0;
 }
 .svgDecor2 {
   position: absolute;
@@ -31,6 +51,7 @@
   width: 100px;
   opacity: 0.9;
   animation: float 7s ease-in-out infinite;
+  z-index: 0;
 }
 .svgDecor3 {
   position: absolute;
@@ -39,6 +60,7 @@
   width: 65px;
   opacity: 0.75;
   animation: float 5s ease-in-out infinite;
+  z-index: 0;
 }
 .svgDecor4 {
   position: absolute;
@@ -47,6 +69,7 @@
   width: 90px;
   opacity: 0.8;
   animation: float 8s ease-in-out infinite;
+  z-index: 0;
 }
 
 @keyframes float {
@@ -55,7 +78,15 @@
 }
 
 /* Content */
-.content { max-width: 980px; margin: 0 auto; position: relative; z-index: 1; }
+.content {
+  max-width: 980px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+
+  /* restore the original top spacing that used to be on .section */
+  padding: 12rem 1rem 0;
+}
 
 /* Title (bobbing letters) */
 .title {
@@ -114,15 +145,15 @@
 
 /* ---- Click-to-translate (looks like normal text, just bold) ---- */
 .term {
-  cursor: pointer;         /* clickable, but keep default text look */
-  font-weight: 800;        /* the only visual difference */
-  color: inherit;          /* no link color */
+  cursor: pointer;
+  font-weight: 800;
+  color: inherit;
   background: none;
   border: none;
   padding: 0;
 }
 .term:focus-visible {
-  outline: 2px dashed rgba(0,0,0,0.3); /* accessible focus ring */
+  outline: 2px dashed rgba(0,0,0,0.3);
   outline-offset: 2px;
 }
 

@@ -8,17 +8,25 @@ export default function MeetTheTeamCTA() {
 
   return (
     <section className={styles.section}>
-      {/* Cloudy top divider */}
-      <div className={styles.cloudTop} aria-hidden="true">
-        <img src="/icons/cloudsection3.svg" alt="" className={styles.cloudSvg} />
-      </div>
+      {/* Cloudy top divider (tiling via CSS background) */}
+      <div className={styles.cloudTop} aria-hidden="true" />
 
-      {/* Decorative floaters (optional; visually match your mission section) */}
-      <img src="/icons/balloon.svg" alt="" className={styles.svgDecor1} aria-hidden="true" />
-      <img src="/icons/plane1.svg" alt="" className={styles.svgDecor2} aria-hidden="true" />
+      {/* Decorative floaters (optional; visually match your other sections) */}
+      <img
+        src="/icons/balloon.svg"
+        alt=""
+        className={styles.svgDecor1}
+        aria-hidden="true"
+      />
+      <img
+        src="/icons/plane1.svg"
+        alt=""
+        className={styles.svgDecor2}
+        aria-hidden="true"
+      />
 
       <div className={styles.content}>
-        {/* Animated, bobbing title (same letter treatment) */}
+        {/* Animated, bobbing title */}
         <h2 className={styles.title} aria-label={title}>
           <span className={styles.letters}>
             {Array.from(title).map((ch, i) =>

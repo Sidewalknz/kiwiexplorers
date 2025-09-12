@@ -32,10 +32,8 @@ export default function MissionStatementSection() {
 
   return (
     <section className={styles.section}>
-      {/* Cloudy top divider */}
-      <div className={styles.cloudTop} aria-hidden="true">
-        <img src="/icons/cloudsection.svg" alt="" className={styles.cloudSvg} />
-      </div>
+      {/* Cloudy top divider (tiling via CSS background) */}
+      <div className={styles.cloudTop} aria-hidden="true" />
 
       {/* Decorative SVGs */}
       <img src="/icons/red-baron.svg" alt="" className={styles.svgDecor1} aria-hidden="true" />

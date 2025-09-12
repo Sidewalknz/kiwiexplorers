@@ -1,30 +1,40 @@
 .section {
+  /* tweak these to taste */
+  --cloud-tile-width: 1100px; /* width of each repeated cloud tile */
+  --cloud-height: 160px;      /* visual height of the cloud strip */
+
   position: relative;
   min-height: 60vh;
-  background: linear-gradient(to bottom, #b0e0e6 20%, #cdeef5 40%, #e9f7fa 80%);
+  background: linear-gradient(to bottom, #fff7e6 0%, #b0e0e6 20%, #cdeef5 40%, #e9f7fa 80%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10rem 2rem 6rem;
+
+  /* let the flipped cloud hug the top edge; move top spacing into .content */
+  padding: 0 2rem 6rem;
   text-align: center;
   overflow: hidden;
 }
 
-/* Flipped Cloud top */
+/* Flipped Cloud Top (repeat-x tiling) */
 .cloudTop {
   position: absolute;
-  top: -1px;
+  top: 0; /* if you ever see a thin seam at some zoom levels, try top: -10px; */
   left: 0;
   width: 100%;
-  line-height: 0;
   z-index: 0;
+  line-height: 0;
+  pointer-events: none;
+
+  background-image: url("/icons/cloudsection2.svg");
+  background-repeat: repeat-x;
+  background-position: top left;
+  background-size: var(--cloud-tile-width) var(--cloud-height);
+  height: var(--cloud-height);
+
+  /* flip vertically so the puffy edge faces downward */
   transform: rotate(180deg);
-}
-.cloudSvg {
-  display: block;
-  width: 100%;
-  height: auto;
 }
 
 /* Decorative Sun SVG */
@@ -49,6 +59,7 @@
   left: 10%;
   width: 60px;
   animation: float 7s ease-in-out infinite;
+  z-index: 0;
 }
 .bird2 {
   position: absolute;
@@ -56,6 +67,7 @@
   right: 15%;
   width: 70px;
   animation: float 9s ease-in-out infinite;
+  z-index: 0;
 }
 .bird3 {
   position: absolute;
@@ -63,6 +75,7 @@
   left: 20%;
   width: 55px;
   animation: float 6s ease-in-out infinite;
+  z-index: 0;
 }
 @keyframes float {
   0%, 100% { transform: translateY(0); }
@@ -75,7 +88,9 @@
   z-index: 1;
   max-width: 720px;
   margin: 0 auto;
-  padding: 1.5rem 1rem;
+
+  /* restore the top spacing that used to live on .section */
+  padding: 10rem 1rem 1.5rem;
 }
 
 /* Title (bobbing letters) */
